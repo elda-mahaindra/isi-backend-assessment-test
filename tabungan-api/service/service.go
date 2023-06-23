@@ -6,7 +6,6 @@ import (
 	"tabungan-api/db/sqlc"
 	db "tabungan-api/db/store"
 	"tabungan-api/dto"
-	"tabungan-api/utils/config"
 
 	"github.com/sirupsen/logrus"
 )
@@ -20,14 +19,12 @@ type IService interface {
 }
 
 type Service struct {
-	config config.Config
 	logger *logrus.Logger
 	store  db.IStore
 }
 
-func NewService(config config.Config, logger *logrus.Logger, store db.IStore) IService {
+func NewService(logger *logrus.Logger, store db.IStore) IService {
 	return &Service{
-		config: config,
 		logger: logger,
 		store:  store,
 	}

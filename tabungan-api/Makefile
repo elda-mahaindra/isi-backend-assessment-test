@@ -13,4 +13,7 @@ migratedown:
 sqlcwithpowershell:
 	docker run --rm -v ${PWD}:/src -w /src kjconroy/sqlc generate
 
+start:
+	go run main.go
+
 .PHONY: createdb dropdb migrateup migratedown sqlcwithpowershell
