@@ -30,7 +30,7 @@ func (store *PostgresStore) DepositTx(ctx context.Context, arg db.DepositTxParam
 
 			store.logger.WithFields(logrus.Fields{
 				"op": op,
-			}).Trace(e.Error())
+			}).Debug(e.Error())
 
 			return err
 		}
@@ -42,7 +42,7 @@ func (store *PostgresStore) DepositTx(ctx context.Context, arg db.DepositTxParam
 
 			store.logger.WithFields(logrus.Fields{
 				"op": op,
-			}).Trace(e.Error())
+			}).Debug(e.Error())
 
 			return err
 		}
@@ -57,7 +57,7 @@ func (store *PostgresStore) DepositTx(ctx context.Context, arg db.DepositTxParam
 
 			store.logger.WithFields(logrus.Fields{
 				"op": op,
-			}).Trace(e.Error())
+			}).Debug(e.Error())
 
 			return err
 		}

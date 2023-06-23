@@ -30,7 +30,7 @@ func (store *PostgresStore) WithdrawalTx(ctx context.Context, arg db.WithdrawalT
 
 			store.logger.WithFields(logrus.Fields{
 				"op": op,
-			}).Trace(e.Error())
+			}).Debug(e.Error())
 
 			return err
 		}
@@ -42,7 +42,7 @@ func (store *PostgresStore) WithdrawalTx(ctx context.Context, arg db.WithdrawalT
 
 			store.logger.WithFields(logrus.Fields{
 				"op": op,
-			}).Trace(e.Error())
+			}).Debug(e.Error())
 
 			return err
 		}
@@ -53,7 +53,7 @@ func (store *PostgresStore) WithdrawalTx(ctx context.Context, arg db.WithdrawalT
 
 			store.logger.WithFields(logrus.Fields{
 				"op": op,
-			}).Trace(e.Error())
+			}).Debug(e.Error())
 
 			return e
 		}
@@ -68,7 +68,7 @@ func (store *PostgresStore) WithdrawalTx(ctx context.Context, arg db.WithdrawalT
 
 			store.logger.WithFields(logrus.Fields{
 				"op": op,
-			}).Trace(e.Error())
+			}).Debug(e.Error())
 
 			return err
 		}

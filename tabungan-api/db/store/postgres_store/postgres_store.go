@@ -36,7 +36,7 @@ func (store *PostgresStore) execTx(ctx context.Context, fn func(*sqlc.Queries) e
 
 		store.logger.WithFields(logrus.Fields{
 			"op": op,
-		}).Trace(e.Error())
+		}).Debug(e.Error())
 
 		return err
 	}
@@ -49,7 +49,7 @@ func (store *PostgresStore) execTx(ctx context.Context, fn func(*sqlc.Queries) e
 
 			store.logger.WithFields(logrus.Fields{
 				"op": op,
-			}).Trace(e.Error())
+			}).Debug(e.Error())
 
 			return err
 		}

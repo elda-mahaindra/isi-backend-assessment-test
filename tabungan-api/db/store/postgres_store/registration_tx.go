@@ -31,7 +31,7 @@ func (store *PostgresStore) RegistrationTx(ctx context.Context, arg db.Registrat
 
 			store.logger.WithFields(logrus.Fields{
 				"op": op,
-			}).Trace(e.Error())
+			}).Debug(e.Error())
 
 			return err
 		}
@@ -48,7 +48,7 @@ func (store *PostgresStore) RegistrationTx(ctx context.Context, arg db.Registrat
 
 			store.logger.WithFields(logrus.Fields{
 				"op": op,
-			}).Trace(e.Error())
+			}).Debug(e.Error())
 
 			return err
 		}
