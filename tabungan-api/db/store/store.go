@@ -19,6 +19,7 @@ type DepositTxParams struct {
 }
 
 type DepositTxResult struct {
+	Saldo int64 `json:"saldo"`
 }
 
 type WithdrawalTxParams struct {
@@ -27,4 +28,5 @@ type WithdrawalTxParams struct {
 }
 
 type WithdrawalTxResult struct {
+	Saldo int64 `json:"saldo"`
 }

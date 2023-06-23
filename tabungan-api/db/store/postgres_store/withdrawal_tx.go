@@ -62,6 +62,8 @@ func (store *PostgresStore) WithdrawalTx(ctx context.Context, arg db.WithdrawalT
 			return e
 		}
 
+		result.Saldo = account.Saldo - arg.Nominal
+
 		return err
 	})
 

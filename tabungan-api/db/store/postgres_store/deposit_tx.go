@@ -62,6 +62,8 @@ func (store *PostgresStore) DepositTx(ctx context.Context, arg db.DepositTxParam
 			return e
 		}
 
+		result.Saldo = account.Saldo + arg.Nominal
+
 		return err
 	})
 
