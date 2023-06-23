@@ -29,5 +29,5 @@ func (service *Service) Registration(ctx context.Context, request dto.Registrati
 		return "", err
 	}
 
-	return result.NoRekening, nil
+	return result.Account.NoRekening, nil
 }

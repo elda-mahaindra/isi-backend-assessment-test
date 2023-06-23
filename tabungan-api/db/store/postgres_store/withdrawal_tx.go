@@ -20,7 +20,7 @@ func (store *PostgresStore) WithdrawalTx(ctx context.Context, arg db.WithdrawalT
 		var err error
 
 		// create entry
-		_, err = q.CreateEntry(ctx, sqlc.CreateEntryParams{
+		result.Entry, err = q.CreateEntry(ctx, sqlc.CreateEntryParams{
 			Code:       "D",
 			Nominal:    arg.Nominal,
 			NoRekening: arg.NoRekening,
@@ -59,7 +59,7 @@ func (store *PostgresStore) WithdrawalTx(ctx context.Context, arg db.WithdrawalT
 		}
 
 		// update saldo
-		_, err = q.UpdateSaldo(ctx, sqlc.UpdateSaldoParams{
+		result.Account, err = q.UpdateSaldo(ctx, sqlc.UpdateSaldoParams{
 			NoRekening: arg.NoRekening,
 			Saldo:      account.Saldo - arg.Nominal,
 		})
@@ -72,8 +72,6 @@ func (store *PostgresStore) WithdrawalTx(ctx context.Context, arg db.WithdrawalT
 
 			return err
 		}
-
-		result.Saldo = account.Saldo - arg.Nominal
 
 		return err
 	})

@@ -12,6 +12,7 @@ import (
 	"tabungan-api/utils/errs"
 
 	"github.com/gofiber/fiber/v2"
+	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
 )
 

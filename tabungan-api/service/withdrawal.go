@@ -28,5 +28,5 @@ func (service *Service) Withdrawal(ctx context.Context, request dto.WithdrawalRe
 		return -1, err
 	}
 
-	return result.Saldo, nil
+	return result.Account.Saldo, nil
 }

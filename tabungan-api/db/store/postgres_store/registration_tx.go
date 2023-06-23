@@ -21,7 +21,7 @@ func (store *PostgresStore) RegistrationTx(ctx context.Context, arg db.Registrat
 		var err error
 
 		// create customers
-		customer, err := q.CreateCustomer(ctx, sqlc.CreateCustomerParams{
+		result.Customer, err = q.CreateCustomer(ctx, sqlc.CreateCustomerParams{
 			Nama: arg.Nama,
 			Nik:  arg.Nik,
 			NoHp: arg.NoHp,
@@ -37,11 +37,9 @@ func (store *PostgresStore) RegistrationTx(ctx context.Context, arg db.Registrat
 		}
 
 		// create account
-		result.NoRekening = random.GenerateNumericString(16)
-
-		_, err = q.CreateAccount(ctx, sqlc.CreateAccountParams{
-			CustomerID: customer.ID,
-			NoRekening: result.NoRekening,
+		result.Account, err = q.CreateAccount(ctx, sqlc.CreateAccountParams{
+			CustomerID: result.Customer.ID,
+			NoRekening: random.GenerateNumericString(16),
 		})
 		if err != nil {
 			e := errs.E(op, errs.Database, fmt.Sprintf("failed to execute 'CreateAccount' query: %s", err))

@@ -28,5 +28,5 @@ func (service *Service) Deposit(ctx context.Context, request dto.DepositRequest)
 		return -1, err
 	}
 
-	return result.Saldo, nil
+	return result.Account.Saldo, nil
 }

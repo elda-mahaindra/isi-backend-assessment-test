@@ -20,7 +20,8 @@ type DepositTxParams struct {
 }
 
 type DepositTxResult struct {
-	Saldo int64 `json:"saldo"`
+	Account sqlc.Account `json:"account"`
+	Entry   sqlc.Entry   `json:"entry"`
 }
 
 type RegistrationTxParams struct {
@@ -30,7 +31,8 @@ type RegistrationTxParams struct {
 }
 
 type RegistrationTxResult struct {
-	NoRekening string `json:"no_rekening"`
+	Account  sqlc.Account  `json:"account"`
+	Customer sqlc.Customer `json:"customer"`
 }
 
 type WithdrawalTxParams struct {
@@ -39,5 +41,6 @@ type WithdrawalTxParams struct {
 }
 
 type WithdrawalTxResult struct {
-	Saldo int64 `json:"saldo"`
+	Account sqlc.Account `json:"account"`
+	Entry   sqlc.Entry   `json:"entry"`
 }
