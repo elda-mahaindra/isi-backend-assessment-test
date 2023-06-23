@@ -7,7 +7,6 @@ import (
 
 	"tabungan-api/db/sqlc"
 	db "tabungan-api/db/store"
-	"tabungan-api/utils/config"
 	"tabungan-api/utils/errs"
 
 	"github.com/sirupsen/logrus"
@@ -15,14 +14,12 @@ import (
 
 type PostgresStore struct {
 	*sqlc.Queries
-	config config.Config
 	logger *logrus.Logger
 	db     *sql.DB
 }
 
-func NewPostgresStore(config config.Config, logger *logrus.Logger, db *sql.DB) db.Store {
+func NewPostgresStore(logger *logrus.Logger, db *sql.DB) db.Store {
 	return &PostgresStore{
-		config:  config,
 		logger:  logger,
 		db:      db,
 		Queries: sqlc.New(db),
