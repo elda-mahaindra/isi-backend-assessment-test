@@ -9,21 +9,21 @@ CREATE TABLE "customers" (
 CREATE TABLE "accounts" (
   "created_at" timestamptz NOT NULL DEFAULT (now()),
   "customer_id" bigint NOT NULL,
-  "no_rekening" bigserial PRIMARY KEY,
+  "no_rekening" varchar PRIMARY KEY,
   "saldo" bigint NOT NULL
 );
 
 CREATE TABLE "entry_types" (
-  "id" smallserial PRIMARY KEY,
+  "id" varchar(1) PRIMARY KEY,
   "name" varchar UNIQUE NOT NULL
 );
 
 CREATE TABLE "entries" (
-  "no_rekening" bigint NOT NULL,
+  "no_rekening" varchar NOT NULL,
   "nominal" bigint NOT NULL,
   "created_at" timestamptz NOT NULL DEFAULT (now()),
   "id" bigserial PRIMARY KEY,
-  "type_id" smallint NOT NULL
+  "type_id" varchar(1) NOT NULL
 );
 
 CREATE INDEX ON "accounts" ("customer_id");
