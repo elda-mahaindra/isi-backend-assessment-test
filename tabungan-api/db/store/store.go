@@ -6,7 +6,7 @@ import (
 	"tabungan-api/db/sqlc"
 )
 
-type Store interface {
+type IStore interface {
 	sqlc.Querier
 
 	DepositTx(ctx context.Context, arg DepositTxParams) (DepositTxResult, error)

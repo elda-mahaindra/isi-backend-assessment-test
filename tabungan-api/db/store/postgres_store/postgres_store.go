@@ -18,7 +18,7 @@ type PostgresStore struct {
 	db     *sql.DB
 }
 
-func NewPostgresStore(logger *logrus.Logger, db *sql.DB) db.Store {
+func NewPostgresStore(logger *logrus.Logger, db *sql.DB) db.IStore {
 	return &PostgresStore{
 		logger:  logger,
 		db:      db,
