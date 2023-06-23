@@ -32,7 +32,7 @@ func (store *PostgresStore) WithdrawalTx(ctx context.Context, arg db.WithdrawalT
 				"op": op,
 			}).Trace(e.Error())
 
-			return e
+			return err
 		}
 
 		// get account
@@ -44,7 +44,7 @@ func (store *PostgresStore) WithdrawalTx(ctx context.Context, arg db.WithdrawalT
 				"op": op,
 			}).Trace(e.Error())
 
-			return e
+			return err
 		}
 
 		// update saldo
@@ -59,7 +59,7 @@ func (store *PostgresStore) WithdrawalTx(ctx context.Context, arg db.WithdrawalT
 				"op": op,
 			}).Trace(e.Error())
 
-			return e
+			return err
 		}
 
 		result.Saldo = account.Saldo - arg.Nominal

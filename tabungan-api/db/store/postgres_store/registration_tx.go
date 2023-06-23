@@ -33,7 +33,7 @@ func (store *PostgresStore) RegistrationTx(ctx context.Context, arg db.Registrat
 				"op": op,
 			}).Trace(e.Error())
 
-			return e
+			return err
 		}
 
 		// create account
@@ -50,7 +50,7 @@ func (store *PostgresStore) RegistrationTx(ctx context.Context, arg db.Registrat
 				"op": op,
 			}).Trace(e.Error())
 
-			return e
+			return err
 		}
 
 		return err

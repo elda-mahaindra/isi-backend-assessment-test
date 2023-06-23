@@ -38,7 +38,7 @@ func (store *PostgresStore) execTx(ctx context.Context, fn func(*sqlc.Queries) e
 			"op": op,
 		}).Trace(e.Error())
 
-		return e
+		return err
 	}
 
 	q := sqlc.New(tx)
@@ -51,7 +51,7 @@ func (store *PostgresStore) execTx(ctx context.Context, fn func(*sqlc.Queries) e
 				"op": op,
 			}).Trace(e.Error())
 
-			return e
+			return err
 		}
 		return err
 	}
