@@ -47,6 +47,17 @@ func (store *PostgresStore) WithdrawalTx(ctx context.Context, arg db.WithdrawalT
 			return err
 		}
 
+		// check balance left
+		if account.Saldo < arg.Nominal {
+			e := errs.E(op, errs.Database, fmt.Sprintf("insufficient balance: %s", err))
+
+			store.logger.WithFields(logrus.Fields{
+				"op": op,
+			}).Trace(e.Error())
+
+			return e
+		}
+
 		// update saldo
 		_, err = q.UpdateSaldo(ctx, sqlc.UpdateSaldoParams{
 			NoRekening: arg.NoRekening,
