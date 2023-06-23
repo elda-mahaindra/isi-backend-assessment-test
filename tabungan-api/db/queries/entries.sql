@@ -1,8 +1,8 @@
 -- name: CreateEntry :one
 INSERT INTO entries (
-    no_rekening,
+    code,
     nominal,
-    type_id
+    no_rekening
 ) VALUES (
     $1, $2, $3
 ) RETURNING *;

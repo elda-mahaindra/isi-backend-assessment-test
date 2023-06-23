@@ -11,35 +11,35 @@ import (
 
 const createEntry = `-- name: CreateEntry :one
 INSERT INTO entries (
-    no_rekening,
+    code,
     nominal,
-    type_id
+    no_rekening
 ) VALUES (
     $1, $2, $3
-) RETURNING no_rekening, nominal, created_at, id, type_id
+) RETURNING code, created_at, id, nominal, no_rekening
 `
 
 type CreateEntryParams struct {
-	NoRekening string `json:"no_rekening"`
+	Code       string `json:"code"`
 	Nominal    int64  `json:"nominal"`
-	TypeID     string `json:"type_id"`
+	NoRekening string `json:"no_rekening"`
 }
 
 func (q *Queries) CreateEntry(ctx context.Context, arg CreateEntryParams) (Entry, error) {
-	row := q.db.QueryRowContext(ctx, createEntry, arg.NoRekening, arg.Nominal, arg.TypeID)
+	row := q.db.QueryRowContext(ctx, createEntry, arg.Code, arg.Nominal, arg.NoRekening)
 	var i Entry
 	err := row.Scan(
-		&i.NoRekening,
-		&i.Nominal,
+		&i.Code,
 		&i.CreatedAt,
 		&i.ID,
-		&i.TypeID,
+		&i.Nominal,
+		&i.NoRekening,
 	)
 	return i, err
 }
 
 const getEntries = `-- name: GetEntries :many
-SELECT no_rekening, nominal, created_at, id, type_id FROM entries 
+SELECT code, created_at, id, nominal, no_rekening FROM entries 
 WHERE no_rekening = $1
 ORDER BY created_at
 `
@@ -54,11 +54,11 @@ func (q *Queries) GetEntries(ctx context.Context, noRekening string) ([]Entry, e
 	for rows.Next() {
 		var i Entry
 		if err := rows.Scan(
-			&i.NoRekening,
-			&i.Nominal,
+			&i.Code,
 			&i.CreatedAt,
 			&i.ID,
-			&i.TypeID,
+			&i.Nominal,
+			&i.NoRekening,
 		); err != nil {
 			return nil, err
 		}

@@ -13,35 +13,16 @@ CREATE TABLE "accounts" (
   "saldo" bigint NOT NULL
 );
 
-CREATE TABLE "entry_types" (
-  "id" varchar(1) PRIMARY KEY,
-  "name" varchar UNIQUE NOT NULL
-);
-
 CREATE TABLE "entries" (
-  "no_rekening" varchar NOT NULL,
-  "nominal" bigint NOT NULL,
+  "code" varchar(1) NOT NULL,
   "created_at" timestamptz NOT NULL DEFAULT (now()),
   "id" bigserial PRIMARY KEY,
-  "type_id" varchar(1) NOT NULL
+  "nominal" bigint NOT NULL,
+  "no_rekening" varchar NOT NULL
 );
 
-CREATE INDEX ON "accounts" ("customer_id");
-
-CREATE INDEX ON "entries" ("no_rekening");
-CREATE INDEX ON "entries" ("type_id");
-CREATE INDEX ON "entries" ("no_rekening", "type_id");
-
-COMMENT ON TABLE "entry_types" IS 'init it with types of DEPOSIT, WITHDRAWAL';
 COMMENT ON COLUMN "entries"."nominal" IS 'can be negative or positive';
 
 ALTER TABLE "accounts" ADD FOREIGN KEY ("customer_id") REFERENCES "customers" ("id");
 
 ALTER TABLE "entries" ADD FOREIGN KEY ("no_rekening") REFERENCES "accounts" ("no_rekening");
-ALTER TABLE "entries" ADD FOREIGN KEY ("type_id") REFERENCES "entry_types" ("id");
-
--- initialization
-INSERT INTO entry_types (id, name)
-VALUES 
-  ('C', 'DEPOSIT'),
-  ('D', 'WITHDRAWAL');

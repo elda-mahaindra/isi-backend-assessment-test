@@ -21,9 +21,9 @@ func (store *PostgresStore) DepositTx(ctx context.Context, arg db.DepositTxParam
 
 		// create entry
 		_, err = q.CreateEntry(ctx, sqlc.CreateEntryParams{
-			NoRekening: arg.NoRekening,
+			Code:       "C",
 			Nominal:    arg.Nominal,
-			TypeID:     "C",
+			NoRekening: arg.NoRekening,
 		})
 		if err != nil {
 			e := errs.E(op, errs.Database, fmt.Sprintf("failed to execute 'CreateEntry' query: %s", err))

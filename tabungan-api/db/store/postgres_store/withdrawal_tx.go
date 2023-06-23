@@ -21,9 +21,9 @@ func (store *PostgresStore) WithdrawalTx(ctx context.Context, arg db.WithdrawalT
 
 		// create entry
 		_, err = q.CreateEntry(ctx, sqlc.CreateEntryParams{
-			NoRekening: arg.NoRekening,
+			Code:       "D",
 			Nominal:    arg.Nominal,
-			TypeID:     "D",
+			NoRekening: arg.NoRekening,
 		})
 		if err != nil {
 			e := errs.E(op, errs.Database, fmt.Sprintf("failed to execute 'CreateEntry' query: %s", err))

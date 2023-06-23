@@ -24,16 +24,10 @@ type Customer struct {
 }
 
 type Entry struct {
-	NoRekening string `json:"no_rekening"`
-	// can be negative or positive
-	Nominal   int64     `json:"nominal"`
+	Code      string    `json:"code"`
 	CreatedAt time.Time `json:"created_at"`
 	ID        int64     `json:"id"`
-	TypeID    string    `json:"type_id"`
-}
-
-// init it with types of DEPOSIT, WITHDRAWAL
-type EntryType struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+	// can be negative or positive
+	Nominal    int64  `json:"nominal"`
+	NoRekening string `json:"no_rekening"`
 }
