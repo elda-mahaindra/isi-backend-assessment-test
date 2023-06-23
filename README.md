@@ -34,7 +34,7 @@ Run the following command to pull the latest postgres image:
 
 Notes:
 
-- This project is developed using postgres version **14**.
+- This project is developed using postgres version **15**.
 
 ### 3. Installing 'golang-migrate'
 
@@ -113,7 +113,7 @@ Run the `migrateup` command inside Makefile or run the following command:
 Run the `migratedown` command inside Makefile or run the following command:
 
 ```bash
-  migrate -path db_migration -database "postgresql://root:secret@localhost:5432/isi_backend_assessment_test?sslmode=disable" -verbose down
+  migrate -path db_migration -database "postgresql://root:secret@localhost:5433/isi_backend_assessment_test?sslmode=disable" -verbose down
 ```
 
 Notes:
@@ -128,7 +128,7 @@ Notes:
 
 ### 1. Docker Compose Down
 
-To **remove all** existing containers and networks related to this project, Run the following command from the root directory where the `docker-compose.yaml` file is placed.
+To **remove all** existing containers and networks related to this project, run the following command from the root directory where the `docker-compose.yaml` file is placed.
 
 For the plugin version (space compose):
 
