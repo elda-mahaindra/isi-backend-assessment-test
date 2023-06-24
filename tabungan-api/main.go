@@ -12,6 +12,7 @@ import (
 	"tabungan-api/utils/errs"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
 )
@@ -66,7 +67,19 @@ func main() {
 	// init fiber app
 	app := fiber.New()
 
+	// CORS middleware configuration
+	corsConfig := cors.Config{
+		AllowHeaders:     "Content-Type,Authorization",
+		AllowCredentials: true,
+	}
+
+	app.Use(cors.New(corsConfig))
+
 	// endpoints
+	app.Get("/ping", func(c *fiber.Ctx) error {
+		return c.SendString("PONG")
+	})
+
 	app.Post("/daftar", handler.Registration)
 	app.Post("/tabung", handler.Deposit)
 	app.Post("/tarik", handler.Withdrawal)

@@ -157,3 +157,7 @@ The commands to remove all images related to this project will be something like
 ```bash
   docker rmi tabungan-api
 ```
+
+## Testing
+
+The script to run all the testing codes has not yet been added, but you can found the testing code inside `service` and `postgres_store` packages and you can run it manually. Unfortunately, mock database has also not yet been added, so you need to use the actual postgres database to run the test (do not forget to migrate the database first before trying).

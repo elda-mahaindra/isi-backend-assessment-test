@@ -20,6 +20,13 @@ func (service *Service) TransactionHistory(ctx context.Context, request dto.Tran
 	}).Debug(fmt.Printf("request: %+v", request))
 
 	// call data access layer
+	// since wrong no rekening will return an empty array instead of error (sqlc config)
+	// let's check the account existence first
+	_, err = service.store.GetAccount(ctx, request.NoRekening)
+	if err != nil {
+		return nil, err
+	}
+
 	entries, err = service.store.GetEntries(ctx, request.NoRekening)
 	if err != nil {
 		return nil, err
