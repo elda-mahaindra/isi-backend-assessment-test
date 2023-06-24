@@ -104,7 +104,7 @@ The following command structure is used to do the **up migration**:
 Run the `migrateup` command inside Makefile or run the following command:
 
 ```bash
-  migrate -path db_migration -database "postgresql://root:secret@localhost:5432/isi_backend_assessment_test?sslmode=disable" -verbose up
+  migrate -path migrations -database "postgresql://root:secret@localhost:5432/isi_backend_assessment_test?sslmode=disable" -verbose up
 ```
 
 **If** there is a need to do the **down migration**, the following command structure can be used:
@@ -116,7 +116,7 @@ Run the `migrateup` command inside Makefile or run the following command:
 Run the `migratedown` command inside Makefile or run the following command:
 
 ```bash
-  migrate -path db_migration -database "postgresql://root:secret@localhost:5432/isi_backend_assessment_test?sslmode=disable" -verbose down
+  migrate -path migrations -database "postgresql://root:secret@localhost:5432/isi_backend_assessment_test?sslmode=disable" -verbose down
 ```
 
 Notes:
