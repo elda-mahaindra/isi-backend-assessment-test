@@ -49,6 +49,7 @@ To run this project, the following environment variables needed to be added.
 Create `app.env` files inside each main service directory (`/tabungan-api`) and add the following environment variables:
 
 ```bash
+  HOST=<HOST>
   PORT=<PORT>
 
   DB_DRIVER=<DB_DRIVER>
@@ -57,6 +58,7 @@ Create `app.env` files inside each main service directory (`/tabungan-api`) and 
 
 Notes:
 
+- `HOST`is the host where the application will running on.
 - `PORT`is the port number where the net will listen to.
 - `DB_DRIVER` is the driver name to open the sql connection.
 - `DATA_SOURCE_NAME` is structured as: `<DRIVER_NAME>://<USERNAME>:<PASSWORD>@<ADDRESS>:<PORT>/<DB_NAME>?sslmode=disable`.
@@ -66,6 +68,7 @@ The environment variables will be something like the below:
 #### /tabungan-api
 
 ```bash
+  HOST=localhost
   PORT=3000
 
   DB_DRIVER=postgres
@@ -101,7 +104,7 @@ The following command structure is used to do the **up migration**:
 Run the `migrateup` command inside Makefile or run the following command:
 
 ```bash
-  migrate -path db_migration -database "postgresql://root:secret@localhost:5433/isi_backend_assessment_test?sslmode=disable" -verbose up
+  migrate -path db_migration -database "postgresql://root:secret@localhost:5432/isi_backend_assessment_test?sslmode=disable" -verbose up
 ```
 
 **If** there is a need to do the **down migration**, the following command structure can be used:
@@ -113,12 +116,11 @@ Run the `migrateup` command inside Makefile or run the following command:
 Run the `migratedown` command inside Makefile or run the following command:
 
 ```bash
-  migrate -path db_migration -database "postgresql://root:secret@localhost:5433/isi_backend_assessment_test?sslmode=disable" -verbose down
+  migrate -path db_migration -database "postgresql://root:secret@localhost:5432/isi_backend_assessment_test?sslmode=disable" -verbose down
 ```
 
 Notes:
 
-- Port 5433 is used because the Postgres container is mapped there (see `docker-compose.yaml` file).
 - _Makefile_ can be found in the root of the project directory.
 - `<PATH>`is the path to migration files.
 - `sslmode=disable`is used because postgres container doesn’t enable SSL by default.
